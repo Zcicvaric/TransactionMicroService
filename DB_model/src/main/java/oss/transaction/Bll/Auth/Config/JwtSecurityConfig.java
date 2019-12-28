@@ -1,5 +1,6 @@
 package oss.transaction.Bll.Auth.Config;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import oss.transaction.Bll.Auth.Security.JwtAuthenticationEntryPoint;
 import oss.transaction.Bll.Auth.Security.JwtAuthenticationProvider;
 import oss.transaction.Bll.Auth.Security.JwtAuthenticationTokenFilter;
@@ -18,6 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import java.util.Collections;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
 @Configuration
@@ -46,7 +48,7 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.csrf().disable()
+        http.cors().and().csrf().disable()
                 .authorizeRequests().antMatchers("/transactions/**").authenticated()
                 //.authorizeRequests().antMatchers("**/rest/**").authenticated()
                 .and()
