@@ -16,6 +16,9 @@ public class Transaction {
     @Column(name = "uid")
     private String uid;
 
+    @Column(name = "userId")
+    private long userId;
+
     @Column(name = "number")
     private String number;
 
