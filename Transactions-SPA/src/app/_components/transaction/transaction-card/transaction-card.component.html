@@ -1,0 +1,155 @@
+<form *ngIf="isReadyToDisplayHtml">
+	<p-panel [header]="'Transakcija id: ' + transaction.id">
+        <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">            
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Id
+                </div>
+                <div class="ui-grid-col-4">
+					<input type="text" pInputText [value]="transaction.id" [readOnly]="true"/>
+				</div>
+				<div class="ui-grid-col-2">
+                    Uid
+                </div>
+                <div class="ui-grid-col-4">
+					<input type="text" pInputText [value]="transaction.uid" [readOnly]="true"/>
+                </div>
+            </div>
+			
+			<div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Number
+                </div>
+                <div class="ui-grid-col-4">
+					<input type="text" pInputText [value]="transaction.number" [readOnly]="true"/>
+				</div>
+				<div class="ui-grid-col-2">
+                    date
+                </div>
+                <div class="ui-grid-col-4">
+					<input type="text" pInputText [value]="transaction.date" [readOnly]="true"/>
+                </div>
+            </div>
+
+
+			<div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    description
+                </div>
+                <div class="ui-grid-col-4">
+					<input type="text" pInputText [value]="transaction.description" [readOnly]="true"/>
+				</div>
+				<div class="ui-grid-col-2">
+                    statusId
+                </div>
+                <div class="ui-grid-col-4">
+					<input type="text" pInputText [value]="transaction.statusId" [readOnly]="true"/>
+                </div>
+            </div>
+
+			<div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    paymentTypeId
+                </div>
+                <div class="ui-grid-col-4">
+					<input type="text" pInputText [value]="transaction.paymentTypeId" [readOnly]="true"/>
+				</div>
+				<div class="ui-grid-col-2">
+                    paymentInstrumentId
+                </div>
+                <div class="ui-grid-col-4">
+					<input type="text" pInputText [value]="transaction.paymentInstrumentId" [readOnly]="true"/>
+                </div>
+            </div>
+
+			<div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    transactionAmount
+                </div>
+                <div class="ui-grid-col-4">
+					<input type="text" pInputText [value]="transaction.transactionAmount" [readOnly]="true"/>
+				</div>
+				<div class="ui-grid-col-2">
+                    payerIBAN
+                </div>
+                <div class="ui-grid-col-4">
+					<input type="text" pInputText [value]="transaction.payerIBAN" [readOnly]="true"/>
+                </div>
+            </div>
+
+			<div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    payerCurrency
+                </div>
+                <div class="ui-grid-col-4">
+					<input type="text" pInputText [value]="transaction.payerCurrency" [readOnly]="true"/>
+				</div>
+				<div class="ui-grid-col-2">
+                    receiverIBAN
+                </div>
+                <div class="ui-grid-col-4">
+					<input type="text" pInputText [value]="transaction.receiverIBAN" [readOnly]="true"/>
+                </div>
+            </div>
+
+			<div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    receiverCurrency
+                </div>
+                <div class="ui-grid-col-4">
+					<input type="text" pInputText [value]="transaction.receiverCurrency" [readOnly]="true"/>
+				</div>
+				<div class="ui-grid-col-2">
+                    receiverExchangeRate
+                </div>
+                <div class="ui-grid-col-4">
+					<input type="text" pInputText [value]="transaction.receiverExchangeRate" [readOnly]="true"/>
+                </div>
+            </div>
+
+			<div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    swiftCode
+                </div>
+                <div class="ui-grid-col-4">
+					<input type="text" pInputText [value]="transaction.swiftCode" [readOnly]="true"/>
+				</div>
+				<div class="ui-grid-col-2">
+                    modelId
+                </div>
+                <div class="ui-grid-col-4">
+					<input type="text" pInputText [value]="transaction.modelId" [readOnly]="true"/>
+                </div>
+            </div>
+
+			<div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    referenceNumber
+                </div>
+                <div class="ui-grid-col-4">
+					<input type="text" pInputText [value]="transaction.referenceNumber" [readOnly]="true"/>
+				</div>
+				<div class="ui-grid-col-2">
+                    usageCode
+                </div>
+                <div class="ui-grid-col-4">
+					<input type="text" pInputText [value]="transaction.usageCode" [readOnly]="true"/>
+                </div>
+            </div>
+
+			<div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    stornoID
+                </div>
+                <div class="ui-grid-col-4">
+					<input type="text" pInputText [value]="transaction.stornoID" [readOnly]="true"/>
+				</div>
+            </div>
+
+			<div class="ui-grid-row">
+                <button pButton type="button" label="Back" (click)=navigateBack()></button>
+            </div>
+
+		</div>
+	</p-panel>
+</form>

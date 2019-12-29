@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { Transaction } from '../_models/transaction';
+import { Observable } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root'
@@ -17,8 +19,20 @@ export class TransactionService {
 
 	constructor(private http: HttpClient) { }
 
-	getAll() {
-		return this.http.get(this.baseUrl + 'transactions/all', this.httpOptions);
+	getById(id) : Observable<Transaction> {
+		return this.http.get<Transaction>(this.baseUrl + 'transactions/id/'+id, this.httpOptions);
+	}
+
+	getAll() : Observable<Transaction[]> {
+		return this.http.get<Transaction[]>(this.baseUrl + 'transactions/all', this.httpOptions);
+	}
+
+	getAllCancelled() : Observable<Transaction[]> {
+		return this.http.get<Transaction[]>(this.baseUrl + 'transactions/all', this.httpOptions);
+	}
+
+	getAllCompleted() : Observable<Transaction[]> {
+		return this.http.get<Transaction[]>(this.baseUrl + 'transactions/all', this.httpOptions);
 	}
 
 }

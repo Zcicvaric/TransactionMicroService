@@ -34,13 +34,7 @@ export class LoginComponent implements OnInit {
 		this.authService.login(credentials).subscribe(
 			success => {
 				this.router.navigate(['/transactions']);
-				console.log("success");
-				// this.transactionService.getAll().subscribe(
-				// 	success => {
-				// 		console.log("transaction service get all response", success);				
-				// 	},
-				// 	error => console.log("transaction service get all response error", error)
-				// );
+				console.log("success");				
 			},
 			error => console.log("login error", error)
 		);

@@ -6,18 +6,28 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './_components/login/login.component';
+import { NavbarComponent } from './_components/navbar/navbar.component';
+import { TransactionListComponent } from './_components/transaction/transaction-list/transaction-list.component';
 
 // primeng
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
-import { TransactionListComponent } from './_components/transaction/transaction-list/transaction-list.component';
+import { TableModule } from 'primeng/table';
+import { DropdownModule } from 'primeng/dropdown';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TransactionCardComponent } from './_components/transaction/transaction-card/transaction-card.component';
+import { TabMenuModule } from 'primeng/tabmenu';
+import {PanelModule} from 'primeng/panel';
+
 
 @NgModule({
    declarations: [
       AppComponent,
 	  LoginComponent,
-	  TransactionListComponent
+	  NavbarComponent,
+	  TransactionListComponent,
+	  TransactionCardComponent
    ],
    imports: [
       BrowserModule,
@@ -26,7 +36,12 @@ import { TransactionListComponent } from './_components/transaction/transaction-
 	  FormsModule,
 	  InputTextModule,
 	  PasswordModule,
-	  ButtonModule
+	  ButtonModule,
+	  TableModule,
+	  DropdownModule,
+	  BrowserAnimationsModule,
+	  TabMenuModule,
+	  PanelModule
    ],
    providers: [],
    bootstrap: [
