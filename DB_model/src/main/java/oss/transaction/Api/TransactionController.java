@@ -22,7 +22,7 @@ public class TransactionController {
     @PostMapping(path = "/add")
     public @ResponseBody
     Transaction addNewTransaction(@RequestBody TransactionToCreateDto transactionToCreateDto) {
-        Transaction transactionToReturn = transactionService.AddNewTransaction(transactionToCreateDto);
+        Transaction transactionToReturn = transactionService.addNewTransaction(transactionToCreateDto);
         return transactionToReturn;
     }
     @GetMapping(path = "/all")

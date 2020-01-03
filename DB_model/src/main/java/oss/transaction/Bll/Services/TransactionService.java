@@ -3,14 +3,13 @@ package oss.transaction.Bll.Services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import oss.transaction.Bll.Dtos.TransactionToCreateDto;
-import oss.transaction.Bll.Enums.PaymentType;
-import oss.transaction.Bll.Enums.Status;
+import oss.transaction.Bll.Enums.EPaymentType;
+import oss.transaction.Bll.Enums.EStatus;
 import oss.transaction.Dal.Models.Transaction;
 import oss.transaction.Dal.Repositories.TransactionsRepository;
 
 import java.rmi.server.UID;
 import java.util.Date;
-import java.util.UUID;
 
 @Service
 public class TransactionService {
@@ -27,7 +26,7 @@ public class TransactionService {
     @Autowired
     private TransactionsRepository transactionsRepository;
 
-    public Transaction AddNewTransaction(TransactionToCreateDto transactionToCreateDto) {
+    public Transaction addNewTransaction(TransactionToCreateDto transactionToCreateDto) {
         Transaction newTransaction = new Transaction();
         newTransaction.setPayerIBAN(transactionToCreateDto.getPayerIBAN());
         newTransaction.setReceiverIBAN(transactionToCreateDto.getReceiverIBAN());
@@ -37,11 +36,11 @@ public class TransactionService {
     }
 
     // TODO: wrappat u try catch sve metode
-    public void ValidateTransaction(TransactionToCreateDto transaction) {
+    public void validateTransaction(TransactionToCreateDto transaction) {
         ValidateIban(transaction.getPayerIBAN());
         ValidateIban(transaction.getReceiverIBAN());
-        ValidateArgumentsForPaymentType(GetPaymentTypeFromRequest(transaction), transaction);
-        if(!HasPayerSufficentFunds()) {
+        validateArgumentsForPaymentType(getPaymentTypeFromRequest(transaction), transaction);
+        if(!hasPayerSufficentFunds()) {
             //throw exception
         }
 
@@ -51,41 +50,41 @@ public class TransactionService {
 
     }
 
-    private PaymentType GetPaymentTypeFromRequest(TransactionToCreateDto transaction) {
-        return PaymentType.National;
+    private EPaymentType getPaymentTypeFromRequest(TransactionToCreateDto transaction) {
+        return EPaymentType.National;
     }
 
-    private void ValidateArgumentsForPaymentType(PaymentType paymentType, TransactionToCreateDto transaction) {
-        if (paymentType.getValue() == PaymentType.Internal.getValue() || paymentType.getValue() == PaymentType.National.getValue()) {
+    private void validateArgumentsForPaymentType(EPaymentType EPaymentType, TransactionToCreateDto transaction) {
+        if (EPaymentType.getValue() == EPaymentType.Internal.getValue() || EPaymentType.getValue() == EPaymentType.National.getValue()) {
                 // Validate model
                 // referenceNumber
                 // Validate UsageCode
         }
-        else if (paymentType.getValue() == PaymentType.International.getValue()) {
+        else if (EPaymentType.getValue() == EPaymentType.International.getValue()) {
             // Validate SWIFT - send req to bank
         }
     }
 
-    private boolean HasPayerSufficentFunds() {
+    private boolean hasPayerSufficentFunds() {
          //poslat req racunima u kojem pitamo ima li platitelj x love na racunu
         return true;
     }
 
-    public void CreateTransaction(TransactionToCreateDto transactionToCreateDto) {
+    public void createTransaction(TransactionToCreateDto transactionToCreateDto) {
         //Transaction transaction = new Transaction();
 
         UID uid = new UID();
         String number = getNextTransactionNumber();
         Date date = new Date(System.currentTimeMillis());
         String description = transactionToCreateDto.getDescription();
-        long statusId = Status.Finalized.getValue();
-        long paymentTypeId = GetPaymentTypeFromRequest(transactionToCreateDto).getValue();
+        long statusId = EStatus.Finalized.getValue();
+        long paymentTypeId = getPaymentTypeFromRequest(transactionToCreateDto).getValue();
         long paymentInstrumentId = transactionToCreateDto.getPaymentInstrumentId();
         float transactionAmount = transactionToCreateDto.getTransactionAmount();
         String payerIBAN = transactionToCreateDto.getPayerIBAN();
-        String payerCurrency = GetCurrencyFromIBAN(transactionToCreateDto.getPayerIBAN());
-        String receiverCurrency = GetCurrencyFromIBAN(transactionToCreateDto.getReceiverIBAN());
-        Float exchangeRate = GetBankExchangeRate(GetBankUid(transactionToCreateDto.getReceiverIBAN()));
+        String payerCurrency = getCurrencyFromIBAN(transactionToCreateDto.getPayerIBAN());
+        String receiverCurrency = getCurrencyFromIBAN(transactionToCreateDto.getReceiverIBAN());
+        Float exchangeRate = getBankExchangeRate(getBankUid(transactionToCreateDto.getReceiverIBAN()));
         String swiftCode = transactionToCreateDto.getSwiftCode();
         long modelId = transactionToCreateDto.getModelId();
         String refenceNumber = transactionToCreateDto.getReferenceNumber();
@@ -96,16 +95,16 @@ public class TransactionService {
         return "500";
     }
 
-    private String GetCurrencyFromIBAN(String IBAN) {
+    private String getCurrencyFromIBAN(String IBAN) {
         return "HRK";
     }
 
-    private String GetBankUid(String IBAN) {
+    private String getBankUid(String IBAN) {
         //mora vracat osam brojeva - oznaka banke iz IBAN
         return "01234567";
     }
 
-    private float GetBankExchangeRate(String bankUid) {
+    private float getBankExchangeRate(String bankUid) {
         return (float)0.0;
     }
 

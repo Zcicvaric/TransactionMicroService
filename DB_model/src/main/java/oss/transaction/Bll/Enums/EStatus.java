@@ -1,9 +1,8 @@
 package oss.transaction.Bll.Enums;
 
-public enum PaymentType {
-    Internal(1),
-    National(2),
-    International(3);
+public enum EStatus {
+    Finalized(1),
+    Canceled(2);
 
     public long getValue() {
         return value;
@@ -11,8 +10,7 @@ public enum PaymentType {
 
     private final long value;
 
-    PaymentType(final long newValue) {
+    EStatus(final long newValue) {
         value = newValue;
     }
-
 }
