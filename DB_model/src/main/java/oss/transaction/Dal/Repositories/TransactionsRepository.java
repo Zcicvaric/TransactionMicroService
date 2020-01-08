@@ -10,6 +10,8 @@ import java.rmi.server.UID;
 public interface TransactionsRepository extends CrudRepository<Transaction,Long> {
     Transaction findById(long id);
     Transaction deleteById(long id);
-    Iterable<Transaction> findByReceiverIBAN(String receiverIBAN);
+    Iterable<Transaction> findByCanceledIsFalseAndUserIdEquals(long userId);
+    Iterable<Transaction> findByCanceledIsTrueAndUserIdEquals(long userId);
+    Iterable<Transaction> findByStornoIDIsNullAndUserIdEquals(long userId);
     Transaction findByUid(String uid);
 }

@@ -28,11 +28,11 @@ export class TransactionService {
 	}
 
 	getAllCancelled() : Observable<Transaction[]> {
-		return this.http.get<Transaction[]>(this.baseUrl + 'transactions/all', this.httpOptions);
+		return this.http.get<Transaction[]>(this.baseUrl + 'transactions/canceled', this.httpOptions);
 	}
 
 	getAllCompleted() : Observable<Transaction[]> {
-		return this.http.get<Transaction[]>(this.baseUrl + 'transactions/all', this.httpOptions);
+		return this.http.get<Transaction[]>(this.baseUrl + 'transactions/completed', this.httpOptions);
 	}
 
 }

@@ -75,6 +75,8 @@ public class Transaction {
     @JoinColumn(name = "storno_id", nullable = true)
     private Transaction stornoID;
 
+    @Column(name = "canceled")
+    private Boolean canceled;
 
 
 
@@ -231,5 +233,13 @@ public class Transaction {
 
     public void setStornoID(Transaction stornoID) {
         this.stornoID = stornoID;
+    }
+
+    public Boolean getCanceled() {
+        return canceled;
+    }
+
+    public void setCanceled(Boolean canceled) {
+        this.canceled = canceled;
     }
 }

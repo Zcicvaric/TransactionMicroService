@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
 		// TODO: this is hardcoded
 		var credentials = {
-			id: 0,
+			id: Math.floor(Math.random() * 150),
   			role: "admin",
   			userName: "admin"
 		};

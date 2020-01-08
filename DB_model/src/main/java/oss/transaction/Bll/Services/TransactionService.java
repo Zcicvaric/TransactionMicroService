@@ -31,13 +31,15 @@ public class TransactionService implements iTransactionService{
     @Autowired
     private TransactionsRepository transactionsRepository;
 
-    public Transaction AddNewTransaction(TransactionToCreateDto transactionToCreateDto) {
+    public Transaction AddNewTransaction(TransactionToCreateDto transactionToCreateDto, long userId) {
         Transaction newTransaction = new Transaction();
         newTransaction.setPayerIBAN(transactionToCreateDto.getPayerIBAN());
         newTransaction.setReceiverIBAN(transactionToCreateDto.getReceiverIBAN());
         newTransaction.setTransactionAmount(transactionToCreateDto.getTransactionAmount());
         Random random = new Random();
         newTransaction.setUid(Integer.toString(random.nextInt(10000000)));
+        newTransaction.setCanceled(false);
+        newTransaction.setUserId(userId);
         transactionsRepository.save(newTransaction);
         return newTransaction;
     }
@@ -121,7 +123,7 @@ public class TransactionService implements iTransactionService{
         return (float)0.0;
     }
 
-    public Transaction createCancelTransaction(String uid){
+    public Transaction createCancelTransaction(String uid, long userId){
         Transaction newTransaction = new Transaction();
         try{
             Transaction transaction = transactionsRepository.findByUid(uid);
@@ -135,7 +137,9 @@ public class TransactionService implements iTransactionService{
                 //transactionsRepository.save(newTransaction);
                 newTransaction.setPayerIBAN(transaction.getReceiverIBAN());
                 newTransaction.setReceiverIBAN(transaction.getPayerIBAN());
-                transaction.setStornoID(newTransaction);
+                newTransaction.setStornoID(transaction);
+                newTransaction.setUserId(userId);
+                transaction.setCanceled(true);
 
                 transactionsRepository.save(newTransaction);
             }
