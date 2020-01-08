@@ -20,11 +20,11 @@ export class TransactionService {
 	constructor(private http: HttpClient) { }
 
 	getById(id) : Observable<Transaction> {
-		return this.http.get<Transaction>(this.baseUrl + 'transactions/id/'+id, this.httpOptions);
+		return this.http.get<Transaction>(this.baseUrl + 'transactions/'+id, this.httpOptions);
 	}
 
 	getAll() : Observable<Transaction[]> {
-		return this.http.get<Transaction[]>(this.baseUrl + 'transactions/all', this.httpOptions);
+		return this.http.get<Transaction[]>(this.baseUrl + 'transactions/', this.httpOptions);
 	}
 
 	getAllCancelled() : Observable<Transaction[]> {
