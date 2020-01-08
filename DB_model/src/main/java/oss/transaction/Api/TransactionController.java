@@ -1,6 +1,7 @@
 package oss.transaction.Api;
 
 
+import oss.transaction.Bll.Services.DisplayRequestHeadersServlet;
 import oss.transaction.Bll.Services.TransactionService;
 import oss.transaction.Dal.Models.Transaction;
 import oss.transaction.Dal.Repositories.TransactionsRepository;
@@ -28,7 +29,8 @@ public class TransactionController {
     }
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping(path = "/all")
-    public @ResponseBody Iterable<Transaction>  getAllTransactions(){
+    public @ResponseBody
+    Iterable<Transaction> getAllTransactions() {
         return transactionsRepository.findAll();
     }
 
@@ -41,15 +43,33 @@ public class TransactionController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @DeleteMapping(path = {"{id}"})
-    public @ResponseBody String deleteTransactionById(@PathVariable long id){
+    public @ResponseBody
+    String deleteTransactionById(@PathVariable long id) {
         transactionsRepository.deleteById(id);
         return "Deleted a transaction!";
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping(path = {"receiver/{receiverIBAN}"})
-    public @ResponseBody Iterable<Transaction> getAllTransactionsWithReceiverIBAN(@PathVariable String receiverIBAN) {
+    public @ResponseBody
+    Iterable<Transaction> getAllTransactionsWithReceiverIBAN(@PathVariable String receiverIBAN) {
         return transactionsRepository.findByReceiverIBAN(receiverIBAN);
     }
 
-}
+    @PostMapping(path = "/cancel")
+    public @ResponseBody
+    Transaction cancelTransaction(@RequestBody String uid) throws IOException {
+        Transaction transaction=transactionService.createCancelTransaction(uid);
+        System.out.print(uid);
+        return transaction;
+
+    }
+
+    }
+
+
+
+
+
+
+

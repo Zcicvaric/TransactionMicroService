@@ -12,6 +12,7 @@ public class TransactionToCreateDto {
     private long modelId;
     private String referenceNumber;
     private int usageCode;
+    private String uid;
 
     public String getDescription() {
         return description;
@@ -53,5 +54,5 @@ public class TransactionToCreateDto {
     public float getTransactionAmount() {
         return transactionAmount;
     }
-
+    public String getUid(){return uid;}
 }
