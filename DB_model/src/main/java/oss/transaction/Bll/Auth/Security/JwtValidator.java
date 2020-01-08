@@ -5,6 +5,8 @@ import oss.transaction.Bll.Auth.Model.JwtUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.stereotype.Component;
+import oss.transaction.Dal.Models.Transaction;
+import oss.transaction.Bll.Services.TransactionService;
 
 @Component
 public class JwtValidator {
@@ -26,6 +28,7 @@ public class JwtValidator {
             jwtUser.setUserName(body.getSubject());
             jwtUser.setId(Long.parseLong((String) body.get("userId")));
             jwtUser.setRole((String) body.get("role"));
+
         }
         catch (Exception e) {
             System.out.println(e);

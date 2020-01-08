@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table
-public class PaymentType {
+public class TransactionType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -19,7 +19,7 @@ public class PaymentType {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "paymentTypeId")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "transactionTypeId")
     private List<Transaction> transactions;
 
     public long getId() {

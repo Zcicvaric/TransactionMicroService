@@ -34,7 +34,7 @@ public class Transaction {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "payment_type_id")
-    private PaymentType paymentTypeId;
+    private TransactionType transactionTypeId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "payment_instrument_id")
@@ -76,6 +76,8 @@ public class Transaction {
     private Transaction stornoID;
 
 
+
+
     public long getId() {
         return id;
     }
@@ -91,6 +93,9 @@ public class Transaction {
     public void setUid(String uid) {
         this.uid = uid;
     }
+    public Long getUserId(){return this.userId;}
+    public void setUserId(Long userId){this.userId = userId;}
+
 
     public String getNumber() {
         return number;
@@ -124,15 +129,15 @@ public class Transaction {
         this.statusId = statusId;
     }
 
-    public PaymentType getPaymentTypeId() {
-        return paymentTypeId;
+    public TransactionType getTransactionTypeId() {
+        return transactionTypeId;
     }
 
-    public void setPaymentTypeId(PaymentType paymentTypeId) {
-        this.paymentTypeId = paymentTypeId;
+    public void setTransactionTypeId(TransactionType transactionTypeId) {
+        this.transactionTypeId = transactionTypeId;
     }
 
-    public PaymentInstrument getPaymentInstrumentId() {
+    public PaymentInstrument getTrInstrumentId() {
         return paymentInstrumentId;
     }
 
