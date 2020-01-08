@@ -1,13 +1,41 @@
-<h3 class="first">Username</h3>
-<input id="input" type="text" size="30" pInputText [(ngModel)]="username"> 
-<span id="text">{{username}}</span>
+<div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+	<p-panel [header]="'Login'">
+		<div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
 
+			<div class="ui-grid-row">
+				<div class="ui-grid-col-4"></div>
+				<div class="ui-grid-col-4">
+					<div class="ui-grid-row">
+						<div class="ui-grid-col-12">
+							<h3 class="first">Username</h3>
+							<input id="input" type="text" size="30" pInputText [(ngModel)]="username">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="ui-grid-row">
+				<div class="ui-grid-col-4"></div>
+				<div class="ui-grid-col-4">
+					<div class="ui-grid-row">
+						<div class="ui-grid-col-12">
+							<h3 class="first">Password</h3>
+					<input pPassword type="password" [feedback]=false [(ngModel)]="password" />
+						</div>
+					</div>
+				</div>
+			</div>
 
-<h3 class="first">Password</h3>
-<input pPassword type="password" [feedback]=false [(ngModel)]="password"/>
-<span id="text">{{password}}</span>
-
-
-<br>
-<br>
-<button pButton type="button" label="Login" (click)="login()"></button>
+			<br>
+			<div class="ui-grid-row">
+				<div class="ui-grid-col-4"></div>
+				<div class="ui-grid-col-4">
+					<div class="ui-grid-row">
+						<div class="ui-grid-col-12">
+							<button pButton type="button" label="Login" (click)="login()"></button>
+						</div>
+					</div>
+				</div>
+			</div>		
+		</div>
+	</p-panel>
+</div>

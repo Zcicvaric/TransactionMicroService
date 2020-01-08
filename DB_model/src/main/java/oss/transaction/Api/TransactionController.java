@@ -27,8 +27,11 @@ public class TransactionController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping(path = {"/{transactionId}"})
     @ResponseBody
-    public Transaction getTransactionById(@PathVariable long transactionId, @RequestHeader("Authorisation") String token) {
-        return transactionService.getTransaction(transactionId, JwtLibrary.getUserId(token));
+    public ResponseEntity getTransactionById(@PathVariable long transactionId, @RequestHeader("Authorisation") String token) {
+        Transaction transaction = transactionService.getTransaction(transactionId, JwtLibrary.getUserId(token));
+        if (transaction == null)
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        return new ResponseEntity(transaction, HttpStatus.OK);
     }
 
     @GetMapping(path = "")

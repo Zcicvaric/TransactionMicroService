@@ -83,6 +83,9 @@ public class TransactionService implements ITransactionService {
         if(transaction == null) {
             throw new Exception("Wrong uid sent!");
         }
+        else if (transaction.getUserId() != userId) {
+            throw new Exception("You dont have a permission to cancel this transaction!");
+        }
         else if(transaction.getCanceled()) {
             throw new Exception("Transaction is already canceled!");
         }
