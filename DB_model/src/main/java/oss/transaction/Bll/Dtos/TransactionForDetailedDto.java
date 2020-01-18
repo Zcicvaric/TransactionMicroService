@@ -1,92 +1,30 @@
+package oss.transaction.Bll.Dtos;
 
-package oss.transaction.Dal.Models;
+import oss.transaction.Dal.Models.*;
 
 import javax.persistence.*;
 import java.sql.Date;
 
-@SuppressWarnings("ALL")
-@Entity
-
-public class Transaction {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+public class TransactionForDetailedDto {
     private long id;
-
-    @Column(name = "uid")
     private String uid;
-
-    @Column(name = "userId")
-    private long userId;
-
-    @Column(name = "number")
     private String number;
-
-    @Column(name = "date")
     private Date date;
-
-    @Column(name = "description")
     private String description;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "status_id")
-    private Status statusId;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "payment_type_id")
-    private TransactionType transactionTypeId;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "payment_instrument_id")
-    private PaymentInstrument paymentInstrumentId;
-
-    @Column(name = "transaction_amount")
+    private String status;
+    private String transactionType;
+    private String paymentInstrument;
     private float transactionAmount;
-
-    @Column(name = "payer_IBAN")
     private String payerIBAN;
-
-    @Column(name = "payer_currency")
     private String payerCurrency;
-
-    @Column(name = "receiver_IBAN")
     private String receiverIBAN;
-
-    @Column(name = "receiver_currency")
     private String receiverCurrency;
-
-    @Column(name = "receiver_exchange_rate")
     private float receiverExchangeRate;
-
-    @Column(name = "swift_code")
     private String swiftCode;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "model_id")
-    private Model modelId;
-
-    @Column(name = "reference_number")
+    private String model;
     private String referenceNumber;
-
-    @Column(name = "usage_code")
     private String usageCode;
-
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "storno_id", nullable = true)
-    private Transaction stornoID;
-
-    @Column(name = "canceled")
     private Boolean canceled;
-
-    public String getTypeOfExpense() {
-        return typeOfExpense;
-    }
-
-    public void setTypeOfExpense(String typeOfExpense) {
-        this.typeOfExpense = typeOfExpense;
-    }
-
-    @Column(name = "typeOfExpense")
     private String typeOfExpense;
 
     public long getId() {
@@ -104,9 +42,6 @@ public class Transaction {
     public void setUid(String uid) {
         this.uid = uid;
     }
-    public Long getUserId(){return this.userId;}
-    public void setUserId(Long userId){this.userId = userId;}
-
 
     public String getNumber() {
         return number;
@@ -132,28 +67,28 @@ public class Transaction {
         this.description = description;
     }
 
-    public Status getStatusId() {
-        return statusId;
+    public String getStatus() {
+        return status;
     }
 
-    public void setStatusId(Status statusId) {
-        this.statusId = statusId;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public TransactionType getTransactionTypeId() {
-        return transactionTypeId;
+    public String getTransactionType() {
+        return transactionType;
     }
 
-    public void setTransactionTypeId(TransactionType transactionTypeId) {
-        this.transactionTypeId = transactionTypeId;
+    public void setTransactionType(String transactionType) {
+        this.transactionType = transactionType;
     }
 
-    public PaymentInstrument getTrInstrumentId() {
-        return paymentInstrumentId;
+    public String getPaymentInstrument() {
+        return paymentInstrument;
     }
 
-    public void setPaymentInstrumentId(PaymentInstrument paymentInstrumentId) {
-        this.paymentInstrumentId = paymentInstrumentId;
+    public void setPaymentInstrument(String paymentInstrument) {
+        this.paymentInstrument = paymentInstrument;
     }
 
     public float getTransactionAmount() {
@@ -212,12 +147,12 @@ public class Transaction {
         this.swiftCode = swiftCode;
     }
 
-    public Model getModelId() {
-        return modelId;
+    public String getModel() {
+        return model;
     }
 
-    public void setModelId(Model modelId) {
-        this.modelId = modelId;
+    public void setModel(String model) {
+        this.model = model;
     }
 
     public String getReferenceNumber() {
@@ -236,19 +171,19 @@ public class Transaction {
         this.usageCode = usageCode;
     }
 
-    public Transaction getStornoID() {
-        return stornoID;
-    }
-
-    public void setStornoID(Transaction stornoID) {
-        this.stornoID = stornoID;
-    }
-
     public Boolean getCanceled() {
         return canceled;
     }
 
     public void setCanceled(Boolean canceled) {
         this.canceled = canceled;
+    }
+
+    public String getTypeOfExpense() {
+        return typeOfExpense;
+    }
+
+    public void setTypeOfExpense(String typeOfExpense) {
+        this.typeOfExpense = typeOfExpense;
     }
 }

@@ -1,6 +1,6 @@
 package oss.transaction.Bll.Enums;
 
-public enum PaymentType {
+public enum TransactionType {
     Internal(1),
     National(2),
     International(3);
@@ -11,7 +11,7 @@ public enum PaymentType {
 
     private final long value;
 
-    PaymentType(final long newValue) {
+    TransactionType(final long newValue) {
         value = newValue;
     }
 

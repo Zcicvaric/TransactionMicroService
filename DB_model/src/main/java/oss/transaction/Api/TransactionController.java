@@ -3,6 +3,8 @@ package oss.transaction.Api;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import oss.transaction.Bll.Auth.Security.JwtLibrary;
+import oss.transaction.Bll.Dtos.TransactionForDetailedDto;
+import oss.transaction.Bll.Dtos.TransactionForListDto;
 import oss.transaction.Bll.Dtos.TransactionToCancelDto;
 import oss.transaction.Bll.Interfaces.ITransactionService;
 import oss.transaction.Bll.Interfaces.ITransactionValidatorService;
@@ -31,25 +33,25 @@ public class TransactionController {
         Transaction transaction = transactionService.getTransaction(transactionId, JwtLibrary.getUserId(token));
         if (transaction == null)
             return new ResponseEntity(HttpStatus.NOT_FOUND);
-        return new ResponseEntity(transaction, HttpStatus.OK);
+        return new ResponseEntity(transactionService.mapToDetailedTrasanction(transaction), HttpStatus.OK);
     }
 
     @GetMapping(path = "")
     @ResponseBody
-    public Iterable<Transaction> getAllTransactions(@RequestHeader("Authorisation") String token) {
-        return transactionService.getAllTransactions(JwtLibrary.getUserId(token));
+    public Iterable<TransactionForListDto> getAllTransactions(@RequestHeader("Authorisation") String token) {
+        return transactionService.mapToListTrasanction(transactionService.getAllTransactions(JwtLibrary.getUserId(token)));
     }
 
     @GetMapping(path = "/completed")
     @ResponseBody
-    public Iterable<Transaction> getCompletedTransactions(@RequestHeader("Authorisation") String token) {
-        return transactionService.getCompletedTransactions(JwtLibrary.getUserId(token));
+    public Iterable<TransactionForListDto> getCompletedTransactions(@RequestHeader("Authorisation") String token) {
+        return transactionService.mapToListTrasanction(transactionService.getCompletedTransactions(JwtLibrary.getUserId(token)));
     }
 
     @GetMapping(path = "/canceled")
     @ResponseBody
-    public Iterable<Transaction> getCanceledTransactions(@RequestHeader("Authorisation") String token) {
-        return transactionService.getCanceledTransactions(JwtLibrary.getUserId(token));
+    public Iterable<TransactionForListDto> getCanceledTransactions(@RequestHeader("Authorisation") String token) {
+        return transactionService.mapToListTrasanction(transactionService.getCanceledTransactions(JwtLibrary.getUserId(token)));
     }
 
     @PostMapping(path = "/create")
@@ -57,7 +59,7 @@ public class TransactionController {
     public ResponseEntity createTransaction(@RequestBody TransactionToCreateDto transactionToCreateDto, @RequestHeader("Authorisation") String token) {
         try {
             transactionValidatorService.validateTransaction(transactionToCreateDto);
-            Transaction transactionToReturn = transactionService.createTransaction(transactionToCreateDto, JwtLibrary.getUserId(token));
+            TransactionForDetailedDto transactionToReturn = transactionService.createTransaction(transactionToCreateDto, JwtLibrary.getUserId(token));
             return new ResponseEntity(transactionToReturn, HttpStatus.OK);
         } catch (Exception exception) {
             return new ResponseEntity(exception.getMessage(), HttpStatus.BAD_REQUEST);
@@ -68,7 +70,9 @@ public class TransactionController {
     @ResponseBody
     public ResponseEntity cancelTransaction(@RequestBody TransactionToCancelDto transactionToCancel, @RequestHeader("Authorisation") String token) throws IOException {
         try {
-            transactionService.cancelTransaction(transactionToCancel.getUid(),JwtLibrary.getUserId(token));
+            long userId = JwtLibrary.getUserId(token);
+            transactionValidatorService.validateTransactionBeforeCancelation(transactionToCancel, userId);
+            transactionService.cancelTransaction(transactionToCancel.getUid(), userId);
             return new ResponseEntity(HttpStatus.OK);
         }
         catch (Exception exception) {

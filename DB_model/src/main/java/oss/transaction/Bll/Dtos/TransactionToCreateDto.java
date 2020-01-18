@@ -11,7 +11,7 @@ public class TransactionToCreateDto {
     private String swiftCode;
     private long modelId;
     private String referenceNumber;
-    private int usageCode;
+    private String usageCode;
     private String uid;
 
     public String getDescription() {
@@ -38,7 +38,7 @@ public class TransactionToCreateDto {
         return referenceNumber;
     }
 
-    public int getUsageCode() {
+    public String getUsageCode() {
         return usageCode;
     }
 
