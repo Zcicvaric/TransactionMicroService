@@ -42,7 +42,7 @@ public class TransactionValidatorService implements ITransactionValidatorService
         try {
             validateIban(transaction.getPayerIBAN());
             validateIban(transaction.getReceiverIBAN());
-            validateArgumentsForPaymentType(getPaymentTypeFromRequest(transaction), transaction);
+            validateArgumentsForPaymentType(getTransactionTypeFromRequest(transaction), transaction);
             validatePersonFunds();
             validatePaymentInstrument(transaction);
             validateModel(transaction);
@@ -70,7 +70,7 @@ public class TransactionValidatorService implements ITransactionValidatorService
         // send request to account microservice
     }
 
-    private TransactionType getPaymentTypeFromRequest(TransactionToCreateDto transaction) {
+    private TransactionType getTransactionTypeFromRequest(TransactionToCreateDto transaction) {
         return TransactionType.National;
     }
 
