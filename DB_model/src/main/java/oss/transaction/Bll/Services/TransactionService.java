@@ -112,12 +112,16 @@ public class TransactionService implements ITransactionService {
     }
 
     public oss.transaction.Dal.Models.TransactionType getTransactionType(TransactionToCreateDto transactionToCreateDto) {
-        // is it internal
-
-        // is it national
-
-        // is it international
-        return transactionTypeRepository.findById(TransactionType.International.getValue());
+        if(transactionToCreateDto.getPayerIBAN().substring(0,2) == transactionToCreateDto.getReceiverIBAN().substring(0,2)) {//provjera jesu li prefiksi racuna isti nrp HR
+            if(transactionToCreateDto.getPayerIBAN().substring(4,11) == transactionToCreateDto.getReceiverIBAN().substring(4,11)) {//provjera je li oznaka banke u IBAN-u ista 5-11 oznaka banke u ibanu
+                return transactionTypeRepository.findById(TransactionType.Internal.getValue());
+            }
+            else {
+                return transactionTypeRepository.findById(TransactionType.National.getValue());
+            }
+        }
+        else
+            return transactionTypeRepository.findById(TransactionType.International.getValue());
     }
 
     public TransactionForDetailedDto mapToDetailedTrasanction(Transaction transaction) {

@@ -80,7 +80,19 @@ public class TransactionValidatorService implements ITransactionValidatorService
     }
 
     private TransactionType getTransactionTypeFromRequest(TransactionToCreateDto transaction) {
-        return TransactionType.National;
+        if(transaction.getPayerIBAN().substring(0,2) == transaction.getReceiverIBAN().substring(0,2)) {//provjera jesu li prefiksi racuna isti nrp HR
+            if(transaction.getPayerIBAN().substring(4,11) == transaction.getReceiverIBAN().substring(4,11)) {//provjera je li oznaka banke u IBAN-u ista 5-11 oznaka banke u ibanu
+                return TransactionType.Internal;
+            }
+            else {
+                return TransactionType.National;
+            }
+        }
+        else
+            return TransactionType.International;
+
+
+        //return TransactionType.National;
     }
 
     private void validatePaymentInstrument(TransactionToCreateDto transaction) throws Exception {
