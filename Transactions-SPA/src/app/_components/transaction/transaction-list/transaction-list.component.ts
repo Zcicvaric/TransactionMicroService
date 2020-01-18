@@ -65,37 +65,25 @@ export class TransactionListComponent implements OnInit {
 			];
 			
 			this.cols = [
-				// { field: 'id', header: 'Id' },
 				{ field: 'uid', header: 'Uid' },
 				{ field: 'transactionAmount', header: 'Amount' },
 				{ field: 'payerCurrency', header: 'Currency' },
 				{ field: 'receiverExchangeRate', header: 'Exchange Rate' },
 				{ field: 'description', header: 'Description' },
-				{ field: 'date', header: 'Date' },
-				// { field: 'paymentInstrumentId', header: 'paymentInstrumentId' },				
-				// { field: 'number', header: 'Number' },				
-				// { field: 'statusId', header: 'statusId' },
-				// { field: 'paymentTypeId', header: 'paymentTypeId' },				
-				// { field: 'payerIBAN', header: 'payerIBAN' },
-				// { field: 'payerCurrency', header: 'payerCurrency' },
-				// { field: 'receiverCurrency', header: 'Currency' },
-				// { field: 'receiverIBAN', header: 'receiverIBAN' },
-				// { field: 'swiftCode', header: 'swiftCode' },
-				// { field: 'modelId', header: 'modelId' },
-				// { field: 'referenceNumber', header: 'referenceNumber' },
-				// { field: 'usageCode', header: 'usageCode' },
-				// { field: 'stornoID', header: 'stornoID' }
+				{ field: 'date', header: 'Date' },				
+				{ field: 'typeOfExpense', header: 'Type of expense' },				
 				{ field: 'edit', header: 'Actions' }
 			];        
 
-		  });
-
-		
-
+		});
 	}	
 
+	isIcon(fieldName: string) {
+		return fieldName == "typeOfExpense";
+	}
+
 	isField(fieldName: string) {
-		return fieldName != "edit";
+		return fieldName != "edit" && fieldName != "typeOfExpense";
 	}
 
 	isAction(fieldName: string) {
@@ -106,4 +94,11 @@ export class TransactionListComponent implements OnInit {
 		this.router.navigate(['/transaction/'+id])
 	}
 	
+	getImage(fieldValue: string) {
+		if (fieldValue == "Food")
+			return "https://cdn.iconscout.com/icon/free/png-256/fast-food-1851561-1569286.png";
+		else 
+			return "https://image.flaticon.com/icons/png/512/619/619043.png";
+	}
+
 }

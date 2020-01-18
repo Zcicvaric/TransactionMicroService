@@ -4,9 +4,9 @@ export class Transaction {
 	number: number;
 	date: string;
 	description: string;
-	statusId: number;
-	paymentTypeId: number;
-	paymentInstrumentId: number;
+	status: string;
+	transactionType: string;
+	paymentInstrument: string;
 	transactionAmount: number;
 	payerIBAN: string;
 	payerCurrency: string;
@@ -14,8 +14,8 @@ export class Transaction {
 	receiverCurrency: string;
 	receiverExchangeRate: number;
 	swiftCode: string;
-	modelId: number;
+	model: number;
 	referenceNumber: string;
 	usageCode: string;
-	stornoID: number;
+	typeOfExpense: string;
 }

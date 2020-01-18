@@ -17,10 +17,10 @@ export class NavbarComponent implements OnInit {
 
 	ngOnInit() {
 		this.items = [
-			{ label: 'Sve Transakcije', icon: 'pi pi-id-card' },
-			{ label: 'Izvšene Transakcije', icon: 'pi pi-check-circle' },
-			{ label: 'Stornirane Transakcije', icon: 'pi pi-minus-circle' },
-			{ label: 'Odjava', icon: 'pi pi-sign-out' }
+			{ label: 'All Transactions', icon: 'pi pi-id-card' },
+			{ label: 'Completed Transactions', icon: 'pi pi-check-circle' },
+			{ label: 'Canceled Transactions', icon: 'pi pi-minus-circle' },
+			{ label: 'Logout', icon: 'pi pi-sign-out' }
 		];
 
 		this.route.data.subscribe( params => {
@@ -40,14 +40,14 @@ export class NavbarComponent implements OnInit {
 
 	navigate(tab) {
 		const selectedTab = tab.activeItem.label;
-		if (selectedTab == "Sve Transakcije")
+		if (selectedTab == "All Transactions")
 			this.router.navigate(['/transactions'])
-		else if (selectedTab == "Izvšene Transakcije")
+		else if (selectedTab == "Completed Transactions")
 			this.router.navigate(['/transactions/completed'])
-		else if (selectedTab == "Stornirane Transakcije")
+		else if (selectedTab == "Canceled Transactions")
 			this.router.navigate(['/transactions/cancelled'])
-		else if (selectedTab == "Odjava") {
-			var logout = confirm("Jeste li sigurni da se zelite odjaviti?");
+		else if (selectedTab == "Logout") {
+			var logout = confirm("Are you sure you want to logout?");
 			if (logout) {
 				this.authService.logout();
 				this.router.navigate(['/login']);

@@ -17,6 +17,8 @@
 			</tr>
 			<tr>
 				<th *ngFor="let col of columns" [ngSwitch]="col.field">
+					<input *ngSwitchCase="'typeOfExpense'" pInputText type="text" readonly
+						(input)="dt.filter($event.target.value, col.field, 'contains')">
 					<input *ngSwitchCase="'edit'" pInputText type="text" readonly
 						(input)="dt.filter($event.target.value, col.field, 'contains')">
 					<input *ngSwitchDefault pInputText type="text"
@@ -29,6 +31,7 @@
 		<ng-template pTemplate="body" let-rowData let-columns="columns">
 			<tr [pSelectableRow]="rowData">
 				<td *ngFor="let col of columns">
+					<img *ngIf="isIcon(col.field)" [src]="getImage(rowData[col.field])" width="60px;" height="auto;"/>
 					<span *ngIf="isField(col.field)">{{rowData[col.field]}}</span>
 					<span *ngIf="isAction(col.field)"><button pButton type="button" icon="pi pi-search-plus" label="View" (click)="edit(rowData['id'])"></button></span>
 				</td>

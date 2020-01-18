@@ -1,5 +1,5 @@
 <form *ngIf="isReadyToDisplayHtml">
-	<p-panel [header]="'Transakcija id: ' + transaction.id">
+	<p-panel [header]="'Transaction id: ' + transaction.id">
         <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">            
             <div class="ui-grid-row">
                 <div class="ui-grid-col-2">
@@ -24,7 +24,7 @@
 					<input type="text" pInputText [value]="transaction.number" [readOnly]="true"/>
 				</div>
 				<div class="ui-grid-col-2">
-                    date
+                    Date
                 </div>
                 <div class="ui-grid-col-4">
 					<input type="text" pInputText [value]="transaction.date" [readOnly]="true"/>
@@ -34,43 +34,43 @@
 
 			<div class="ui-grid-row">
                 <div class="ui-grid-col-2">
-                    description
+                    Description
                 </div>
                 <div class="ui-grid-col-4">
 					<input type="text" pInputText [value]="transaction.description" [readOnly]="true"/>
 				</div>
 				<div class="ui-grid-col-2">
-                    statusId
+                    Status
                 </div>
                 <div class="ui-grid-col-4">
-					<input type="text" pInputText [value]="transaction.statusId" [readOnly]="true"/>
+					<input type="text" pInputText [value]="transaction.status" [readOnly]="true"/>
                 </div>
             </div>
 
 			<div class="ui-grid-row">
                 <div class="ui-grid-col-2">
-                    paymentTypeId
+                    Transaction Type
                 </div>
                 <div class="ui-grid-col-4">
-					<input type="text" pInputText [value]="transaction.paymentTypeId" [readOnly]="true"/>
+					<input type="text" pInputText [value]="transaction.transactionType" [readOnly]="true"/>
 				</div>
 				<div class="ui-grid-col-2">
-                    paymentInstrumentId
+                    Payment Instrument
                 </div>
                 <div class="ui-grid-col-4">
-					<input type="text" pInputText [value]="transaction.paymentInstrumentId" [readOnly]="true"/>
+					<input type="text" pInputText [value]="transaction.paymentInstrument" [readOnly]="true"/>
                 </div>
             </div>
 
 			<div class="ui-grid-row">
                 <div class="ui-grid-col-2">
-                    transactionAmount
+                    Transaction Amount
                 </div>
                 <div class="ui-grid-col-4">
 					<input type="text" pInputText [value]="transaction.transactionAmount" [readOnly]="true"/>
 				</div>
 				<div class="ui-grid-col-2">
-                    payerIBAN
+                    Payer IBAN
                 </div>
                 <div class="ui-grid-col-4">
 					<input type="text" pInputText [value]="transaction.payerIBAN" [readOnly]="true"/>
@@ -79,13 +79,13 @@
 
 			<div class="ui-grid-row">
                 <div class="ui-grid-col-2">
-                    payerCurrency
+                    Payer Currency
                 </div>
                 <div class="ui-grid-col-4">
 					<input type="text" pInputText [value]="transaction.payerCurrency" [readOnly]="true"/>
 				</div>
 				<div class="ui-grid-col-2">
-                    receiverIBAN
+                    Receiver IBAN
                 </div>
                 <div class="ui-grid-col-4">
 					<input type="text" pInputText [value]="transaction.receiverIBAN" [readOnly]="true"/>
@@ -94,13 +94,13 @@
 
 			<div class="ui-grid-row">
                 <div class="ui-grid-col-2">
-                    receiverCurrency
+                    Receiver Currency
                 </div>
                 <div class="ui-grid-col-4">
 					<input type="text" pInputText [value]="transaction.receiverCurrency" [readOnly]="true"/>
 				</div>
 				<div class="ui-grid-col-2">
-                    receiverExchangeRate
+                    Receiver Exchange Rate
                 </div>
                 <div class="ui-grid-col-4">
 					<input type="text" pInputText [value]="transaction.receiverExchangeRate" [readOnly]="true"/>
@@ -109,41 +109,32 @@
 
 			<div class="ui-grid-row">
                 <div class="ui-grid-col-2">
-                    swiftCode
+                    Swift Code
                 </div>
                 <div class="ui-grid-col-4">
 					<input type="text" pInputText [value]="transaction.swiftCode" [readOnly]="true"/>
 				</div>
 				<div class="ui-grid-col-2">
-                    modelId
+                    Model
                 </div>
                 <div class="ui-grid-col-4">
-					<input type="text" pInputText [value]="transaction.modelId" [readOnly]="true"/>
+					<input type="text" pInputText [value]="transaction.model" [readOnly]="true"/>
                 </div>
             </div>
 
 			<div class="ui-grid-row">
                 <div class="ui-grid-col-2">
-                    referenceNumber
+                    Reference Number
                 </div>
                 <div class="ui-grid-col-4">
 					<input type="text" pInputText [value]="transaction.referenceNumber" [readOnly]="true"/>
 				</div>
 				<div class="ui-grid-col-2">
-                    usageCode
+                    Usage Code
                 </div>
                 <div class="ui-grid-col-4">
 					<input type="text" pInputText [value]="transaction.usageCode" [readOnly]="true"/>
                 </div>
-            </div>
-
-			<div class="ui-grid-row">
-                <div class="ui-grid-col-2">
-                    stornoID
-                </div>
-                <div class="ui-grid-col-4">
-					<input type="text" pInputText [value]="transaction.stornoID" [readOnly]="true"/>
-				</div>
             </div>
 
 			<div class="ui-grid-row">
