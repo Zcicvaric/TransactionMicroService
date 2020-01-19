@@ -13,10 +13,12 @@ public class JwtGenerator {
     public String generate(JwtUser jwtUser) {
 
 
+        int random = (int)(Math.random()*100);
+        jwtUser.setId(random);
         Claims claims = Jwts.claims()
                 .setSubject(jwtUser.getUserName());
-        claims.put("userId", String.valueOf(jwtUser.getId()));
-        claims.put("role", jwtUser.getRole());
+        claims.put("userId", String.valueOf(random));
+        claims.put("password", jwtUser.getPassword());
 
 
         return Jwts.builder()

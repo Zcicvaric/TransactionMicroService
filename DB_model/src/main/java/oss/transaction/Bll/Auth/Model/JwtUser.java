@@ -3,7 +3,7 @@ package oss.transaction.Bll.Auth.Model;
 public class JwtUser {
     private String userName;
     private long id;
-    private String role;
+    private String password;
 
     public void setUserName(String userName) {
         this.userName = userName;
@@ -13,8 +13,8 @@ public class JwtUser {
         this.id = id;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setPassword(String role) {
+        this.password = role;
     }
 
     public String getUserName() {
@@ -25,7 +25,7 @@ public class JwtUser {
         return id;
     }
 
-    public String getRole() {
-        return role;
+    public String getPassword() {
+        return password;
     }
 }
