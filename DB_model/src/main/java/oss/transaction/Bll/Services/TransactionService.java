@@ -112,8 +112,8 @@ public class TransactionService implements ITransactionService {
     }
 
     public oss.transaction.Dal.Models.TransactionType getTransactionType(TransactionToCreateDto transactionToCreateDto) {
-        if(transactionToCreateDto.getPayerIBAN().substring(0,2) == transactionToCreateDto.getReceiverIBAN().substring(0,2)) {//provjera jesu li prefiksi racuna isti nrp HR
-            if(transactionToCreateDto.getPayerIBAN().substring(4,11) == transactionToCreateDto.getReceiverIBAN().substring(4,11)) {//provjera je li oznaka banke u IBAN-u ista 5-11 oznaka banke u ibanu
+        if(transactionToCreateDto.getPayerIBAN().substring(0,2).equals(transactionToCreateDto.getReceiverIBAN().substring(0,2))) {
+            if(transactionToCreateDto.getPayerIBAN().substring(4,11).equals(transactionToCreateDto.getReceiverIBAN().substring(4,11))) {
                 return transactionTypeRepository.findById(TransactionType.Internal.getValue());
             }
             else {
@@ -141,7 +141,7 @@ public class TransactionService implements ITransactionService {
         transactionForDetailed.setReceiverCurrency(transaction.getReceiverCurrency());
         transactionForDetailed.setReceiverExchangeRate(transaction.getReceiverExchangeRate());
         transactionForDetailed.setSwiftCode(transaction.getSwiftCode());
-        transactionForDetailed.setModel(transaction.getModelId().getName());
+        transactionForDetailed.setModel(transaction.getModelId() != null ? transaction.getModelId().getName() : "");
         transactionForDetailed.setReferenceNumber(transaction.getReferenceNumber());
         transactionForDetailed.setUsageCode(transaction.getUsageCode());
         transactionForDetailed.setCanceled(transaction.getCanceled());
